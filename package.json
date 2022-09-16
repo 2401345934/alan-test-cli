@@ -1,6 +1,6 @@
 {
   "name": "xmh-cli-test",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -14,6 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "commander": "^9.4.0",
-    "download-git-repo": "^3.0.2"
+    "download-git-repo": "^3.0.2",
+    "inquirer": "^9.1.1"
   }
 }

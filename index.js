@@ -3,13 +3,14 @@
 const program = require('commander');
 const download = require('download-git-repo');
 const inquirer = require('inquirer')
+
 // 创建失败提示
 const errorLog = (error) => {
   console.log(`error -------------------------------------------------------------------${error || 'error'}`)
 }
 //version 版本号
 //name 新项目名称
-program.version('1.0.4', '-v, --version')
+program.version('1.0.6', '-v, --version')
     .command('create <projectName>')
     .action((projectName) => {
       inquirer.prompt(

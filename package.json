@@ -1,20 +1,41 @@
 {
-  "name": "xmh-cli-test",
+  "name": "xmh-cli",
   "version": "1.1.0",
-  "description": "",
+  "description": "Template type Scaffold provides many templates built by itself",
   "main": "index.js",
   "scripts": {
+    "version": "# 修改 version  \n zx bump.mjs",
+    "commit": "npm run changelog && git add . && git cz ",
+    "push": "npm run commit && git push origin HEAD",
+    "changelog": "conventional-changelog -p custom-config -i CHANGELOG.md -s -r 0",
+    "prepublish": "npm run version",
+    "publish": "npm publish",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "xmh-cli-test": "index.js"
+    "xmh-cli": "index.js"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    }
   },
   "keywords": [],
-  "author": "",
+  "author": "alan",
   "license": "ISC",
   "dependencies": {
+    "chalk": "^4.1.2",
     "commander": "^9.4.0",
+    "commitizen": "^4.2.5",
+    "commitlint": "^17.1.2",
+    "cz-conventional-changelog": "^3.3.0",
+    "cz-customizable": "^7.0.0",
     "download-git-repo": "^3.0.2",
-    "inquirer": "^8.2.2"
+    "figlet": "^1.5.2",
+    "fs-extra": "^11.1.0",
+    "inquirer": "^8.2.2",
+    "ora": "^5.4.1",
+    "prompts": "^2.4.2",
+    "zx": "^7.1.1"
   }
 }

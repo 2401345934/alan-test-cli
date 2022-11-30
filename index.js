@@ -1,8 +1,9 @@
 #! /usr/bin/env node
 
 const program = require('commander');
-const download = require('download-git-repo');
 const inquirer = require('inquirer')
+const chalk = require('chalk');
+const TEMPLATE_MAP = require("./help").TEMPLATE_MAP;
 
 // 创建失败提示
 const errorLog = (error) => {
@@ -10,67 +11,39 @@ const errorLog = (error) => {
 }
 //version 版本号
 //name 新项目名称
-program.version('1.1.0', '-v, --version')
+program.version(`xmh-cli ${require("./package.json").version}`)
+  .usage(`<command> [option]`)
   .command('create <projectName>')
-  .action((projectName) => {
+  .option("-f, --force", "overwrite target directory if it exists") // 强制覆盖
+  .action((projectName, cmd) => {
     inquirer.prompt(
       [
         {
           type: 'list',
           name: 'templateType',
           message: '请选择模版',
-          choices: ['vue', 'react', 'vue-mobile', 'react-mobile'],
-          default: 'vue',
+          choices: Object.keys(TEMPLATE_MAP),
+          default: Object.keys(TEMPLATE_MAP)[0],
         },
       ],
     ).then((options) => {
-      const { templateType } = options
-      switch (templateType) {
-        case "vue":
-          console.log('clone template ...');
-          download('github:2401345934/webpack-vue-demo', projectName, function (err) {
-            console.log(err ? 'Error' : 'Success')
-          })
-          break
-        case "react":
-          console.log('clone template ...');
-          download('github:2401345934/webpack-react-demo', projectName, function (err) {
-            console.log(err ? 'Error' : 'Success')
-          })
-          break
-        case "vue-mobile":
-          console.log('clone template ...');
-          download('github:2401345934/vue-mobile-template', projectName, function (err) {
-            console.log(err ? 'Error' : 'Success')
-          })
-          break
-        case "react-mobile":
-          console.log('clone template ...');
-          download('github:2401345934/react-mobile-template', projectName, function (err) {
-            console.log(err ? 'Error' : 'Success')
-          })
-          break
-        case "cli-template":
-          console.log('clone template ...');
-          download('github:2401345934/alan-test-cli', projectName, function (err) {
-            console.log(err ? 'Error' : 'Success')
-          })
-          break
-        case "vitepress-template":
-          console.log('clone template ...');
-          download('github:2401345934/vitepress-template', projectName, function (err) {
-            console.log(err ? 'Error' : 'Success')
-          })
-          break
-        case "vite-component-template":
-          console.log('clone template ...');
-          download('github:2401345934/vue3-alan-vite-component', projectName, function (err) {
-            console.log(err ? 'Error' : 'Success')
-          })
-          break
-      }
+      // 引入 create 模块，并传入参数
+      require("./lib/create")(projectName, cmd, options);
     }).catch((error) => {
       errorLog(error)
     })
   });
+
+// 监听 --help 指令
+program.on("--help", function () {
+  // 前后两个空行调整格式，更舒适
+  console.log();
+  console.log(
+    `Run ${chalk.cyan(
+      "xmh-cli <command> --help"
+    )} for detailed usage of given command.`
+  );
+  console.log();
+});
+
 program.parse(process.argv);

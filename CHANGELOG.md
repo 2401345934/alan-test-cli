@@ -1,5 +1,6 @@
-## 1.1.0 (2022-11-30)
+## <small>1.1.1 (2022-12-11)</small>
 
+* ✨新增(create-template): ([665fd43](https://github.com/2401345934/alan-test-cli/commit/665fd43))
 * 更新版本 ([6e96f6e](https://github.com/2401345934/alan-test-cli/commit/6e96f6e))
 * 新增模版 ([f427dbf](https://github.com/2401345934/alan-test-cli/commit/f427dbf))
 * 修改 readme ([b4c143d](https://github.com/2401345934/alan-test-cli/commit/b4c143d))

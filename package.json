@@ -1,6 +1,6 @@
 {
   "name": "xmh-cli",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Template type Scaffold provides many templates built by itself",
   "main": "index.js",
   "scripts": {
@@ -11,6 +11,10 @@
     "prepublish": "npm run version",
     "publish": "npm publish",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:2401345934/alan-test-cli.git"
   },
   "bin": {
     "xmh-cli": "index.js"

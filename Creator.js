@@ -5,6 +5,8 @@ const figlet = require('figlet');
 const chalk = require("chalk");
 const ora = require("ora");
 const spinner = ora("正在冲锋中...")
+const { exec } = require('child_process');
+
 class Creator {
   // 项目名称及项目路径
   constructor(name, templateType) {
@@ -38,8 +40,24 @@ class Creator {
           console.log(`\r\n  cd ${chalk.cyan(this.name)}`);
           console.log("  npm install\r\n");
           console.log("  npm run dev\r\n");
+          console.log(`正在下载依赖中...`)
+          spinner.start();
+          // 执行 cd 命令
+          exec(`cd ./${this.name}/ && cnpm install`, (err, stdout, stderr) => {
+            if (err) {
+              spinner.fail();
+              console.error(`执行cd命令时发生错误: ${err}`);
+              return;
+            }
+            if (stdout) {
+              console.log(`stdout: ${stdout}`);
+            }
+            if (stderr) {
+              console.error(`stderr: ${stderr}`);
+            }
+          });
+          spinner.succeed();
         }
-
       })
     })
   }

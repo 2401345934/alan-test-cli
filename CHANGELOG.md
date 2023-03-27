@@ -1,5 +1,6 @@
-## <small>1.1.2 (2023-03-20)</small>
+## <small>1.1.3 (2023-03-27)</small>
 
+* ⏪回滚(packages): 新增最新版rswebpack ([52f87e0](https://github.com/2401345934/alan-test-cli/commit/52f87e0))
 
 
 
